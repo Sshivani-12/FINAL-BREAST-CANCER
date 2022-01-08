@@ -2,24 +2,18 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="static/style.css"> 
-     <!-- add icon link -->
-     <link rel = "icon" type = "image/x-icon" href ="static/logoo.png">  
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+   <link rel = "icon" type = "image/x-icon" href ="static/logoo.png">  
     <title>Breast Cancer Prediction Model</title>
     <meta charset="utf-8" name="viewport" 
     content= "width=device-width, initial-scale=1.0">
-    <!-- <style>
-      div {
-        background-image: url('static/bg.png');
-      }
-      </style> -->
   </head>
   
-  <body>
+ <!-- <body>
     <div class="container_main" style="background-color: #875a53;">
       <div class="sub_container" id="holder" >
           <table >
@@ -157,5 +151,150 @@
   </div>
   </table>
   </body>
+  
+  !-->
+ <style>
+ 
+
+ label
+
+{
+  width: 230px;
+display: inline-block;
+text-align: left;
+}
+input:focus { box-shadow: inset 0 -5px 45px rgba(100,100,100,0.4), 0 1px 1px rgba(255,255,255,0.2); }
+  body {
+    font: 20px Montserrat, sans-serif;
+    line-height: 1.8;
+    background-color: #875a53 ;
+	
+  }
+  p {font-size: 16px;}
+  .margin {margin-bottom: 25px;}
+  .bg-1 { 
+    background-color: #875a53; /* Green */
+    color: #ffffff;
+  }
+  .bg-2 { 
+    background-color: #474e5d; /* Dark Blue */
+    color: #ffffff;
+  }
+  .bg-3 { 
+    background-color: #ffffff; /* White */
+    color: #555555;
+  }
+  .bg-4 { 
+    background-color: #2f2f2f; /* Black Gray */
+    color: #fff;
+  }
+  .container-fluid {
+    padding-top: 70px;
+    padding-bottom: 70px;
+  }
+ #container-v {
+    overflow-y: hidden;
+    width:100% !important;
+  }
+  .child_con {
+    height: 500px;
+    float: left;
+    margin: 1em;
+  }
+  input[type=text] {
+ 
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: none;
+  background-color: white;
+  color: black;
+}
+
+.block {
+  display: block;
+  width: 10%;
+  border: none;
+  background-color: #D06224;
+  color: white;
+  padding: 14px 28px;
+  font-size: 16px;
+  cursor: pointer;
+  text-align: center;
+  float:center;
+  margin-left:45%;
+  
+}
+
+
+
+  </style>
+</head>
+<body >
+
+
+  <div class="login" style = "height: 850px;overflow-y: scroll;" >      
+<div id="practice" class="container-fluid bg-1 text-center" >
+    <h1 class="margin">Breast Cancer Prediction</h1>
+    <img src="{{url_for('static', filename='logoo.png')}}" class="img-responsive img-circle margin" style="display:inline" alt="Bird" width="200" height="200">     
+
+<!--##########################################################################################################-->
+
+
+
+     <!-- Main Input For Receiving Query to our ML -->
+    <form action="{{ url_for('predict')}}"method="post" >
+   
+  <!--##########################################################################################################-->
+                                  
+                                              <!--REGEX FOR ERROR HANDLING-->
+                                              
+                                              <label for="fname">Texture Mean:</label>
+  <input type="text" id="fname" name="Texture Mean" placeholder="Value range: 9.71 - 39.28" pattern="^(0?[1-9]|[1-9][0-9]|[1][1-9][1-9]|200)$" title="Please enter a valid number between 0 and 200." required="required" /><br>
+  <label for="name">Area Mean :</label>
+  <input type="text" id="name" name="Area Mean" placeholder="Value range: 143.50 - 2501.00"  pattern="^(0?[1-9]|[1-9][0-9]|[1][1-9][1-9]|200)$" title="Please enter a valid number between 0 and 200." required="required" /><br>
+	
+  
+  <!--##########################################################################################################-->
+		 <label for="cycle">Area SE</label>
+		<input type="text" id="cycle" name="Cycle (R/I)" placeholder="Value range: 6.80 - 542.20" required="required" /><br>
+                 
+                  <label for="gain">Fractal Dimension SE:</label>
+                  <input type="text" id="gain" name="Fractal Dimension SE:" placeholder="Value range: 0.00 - 0.03" required="required" /><br>
+				  
+              <label for="hair">Concavity SE:</label>
+              <input type="text" id="hair" name="Concavity SE:" placeholder="Value range: 0.00 - 0.40"  required="required" /><br>
+           
+           <label for="fa">Concavity Mean:</label>
+      <input type="text" id="fa" name="Concavity Mean:" placeholder="Value range: 0.00 - 0.43" required="required" /><br>
+            
+     <label for="skin">Smoothness Worst:</label>
+           <input type="text" id="skin"name="Smoothness Worst:" placeholder="Value range: 0.07 - 0.22" required="required" /><br>
+ 
+	
+         <label for="pi">Concavity Worst:</label>
+          <input type="text" id="pi" name="Concavity Worst:" placeholder="Value range: 0.00 - 1.25" required="required" /><br>
+   
+   <label for="hair">Symmetry Worst:</label>
+         <input type="text" id="hair" name="Symmetry Worst:" placeholder="Value range: 0.16 - 0.66" required="required" /><br>
+     
+    
+   <label for="re">Fractal Dimension Worst:</label>
+   <input type="text" id="re" name="Fractal Dimension Worst:" placeholder="Value range: 0.06 - 0.21" required="required" />
+
+
+
+        <button type="submit" class="block">Predict</button>
+    </form>
+
+
+   <p>                   </p>
+   {{ prediction_text }}
+   </div>
+ 
+ </div>
+  
+  </body>
+  
 </html>
 
